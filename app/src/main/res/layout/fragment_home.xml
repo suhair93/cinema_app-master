@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".customer.Home"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorPrimaryDark"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/now"
+                android:textSize="@dimen/text_big"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:gravity="center"
+
+                />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/text_medium"
+                android:textColor="@color/white"
+                android:text="Singin"/>
+
+        </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:background="@color/colorPrimaryDark">
+        <SearchView
+            android:layout_width="match_parent"
+            android:id="@+id/search"
+            android:layout_height="wrap_content"
+            android:background="@color/gold"
+            android:hint="search in movies"
+            android:fontFamily="casual"
+
+
+            android:drawableLeft="@drawable/search"
+            />
+        <!--<EditText-->
+            <!--android:id="@+id/search_editText"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--android:layout_marginEnd="5dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:padding="5dp"-->
+            <!--android:hint="@string/search"-->
+            <!--android:backgroundTint="@color/transparent"-->
+            <!--android:textColor="@color/colorAccent"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textColorHint="@color/white"-->
+            <!--android:layout_weight=".5"/>-->
+
+           <!--<View-->
+               <!--android:layout_width="1dp"-->
+               <!--android:layout_height="match_parent"-->
+               <!--android:background="@color/colorAccent"-->
+               <!--android:layout_margin="2dp"/>-->
+
+
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/search_btn"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@drawable/search"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_gravity="center"-->
+           <!--/>-->
+
+
+    </LinearLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="match_parent"
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_margin="@dimen/margin10"
+            android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+
+                android:id="@+id/recycler"/>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
+
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#43423c</color>
+    <color name="colorPrimaryDark">#080808</color>
+    <color name="colorAccent">#ccb324</color>
+    <color name="gold">#f1d534</color>
+    <color name="white">#ececec</color>
+    <color name="white1">#ffffff</color>
+    <color name="red">#ff5454</color>
+    <color name="blue">#46ccb6</color>
+    <color name="transparent">#db000000</color>
+    transparent
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:background="@color/gold">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back"
+            android:id="@+id/back"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           android:gravity="center_vertical"
+            android:text="Select Seat"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/margin10"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_big"/>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin10"
+
+        android:background="@drawable/corner"
+        android:visibility="visible">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_weight=".5"
+        android:text="payment"
+        android:textStyle="bold"
+       android:layout_marginEnd="@dimen/margin10"
+        android:background="@color/gold"
+        android:textSize="@dimen/text_medium"
+
+        />
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         android:layout_weight=".5"
+            android:layout_marginStart="@dimen/margin10"
+            android:text="cancel"
+            android:textStyle="bold"
+            android:background="@color/gold"
+            android:textSize="@dimen/text_medium"
+
+            />
+    </LinearLayout>
+
+</LinearLayout>
+
+
