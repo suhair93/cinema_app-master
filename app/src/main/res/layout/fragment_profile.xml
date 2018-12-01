@@ -35,6 +35,21 @@
                 android:layout_marginStart="@dimen/margin"
                 android:layout_marginLeft="@dimen/margin10"/>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:gravity="end"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="5dp"
+                    android:text="logout"
+                    />
+            </RelativeLayout>
+
 
         </Toolbar>
 

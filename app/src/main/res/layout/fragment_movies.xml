@@ -14,7 +14,7 @@
         android:background="@color/colorAccent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
             android:text="Movies "
             android:textSize="@dimen/text_big"
@@ -22,6 +22,23 @@
             android:gravity="center"
 
             />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="end"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_medium"
+                android:background="@color/colorAccent"
+                android:layout_margin="5dp"
+                android:text="logout"
+                />
+        </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

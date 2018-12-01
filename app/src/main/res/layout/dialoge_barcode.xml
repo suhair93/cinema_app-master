@@ -58,6 +58,7 @@
         android:background="@color/black_gray"
         android:textColor="@color/gold"
         android:padding="5dp"
+        android:layout_marginBottom="@dimen/margin10"
         android:textSize="@dimen/text_big"
         android:text="Done "/>
 

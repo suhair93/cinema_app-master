@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Movie;
 import android.net.Uri;
 import android.renderscript.Sampler;
 import android.support.v7.app.AlertDialog;
@@ -23,13 +25,18 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cinema_app.R;
 import com.cinema_app.admin.add_movie;
 import com.cinema_app.models.movies;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
@@ -69,6 +76,8 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
 
         final Holder  Holder = (Holder) holder;
         final movies movies = list.get(position);
@@ -86,10 +95,10 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
              @Override
              public void onClick(View v) {
 
-                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                  LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 
-                 View views = inflater.inflate(R.layout.edit_movie_admin, null);
+                 final View views = inflater.inflate(R.layout.edit_movie_admin, null);
                  alertDialog.setView(views);
                  final AlertDialog dialog = alertDialog.create();
                  dialog.show();
@@ -101,9 +110,17 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                  final EditText libirty =  views.findViewById(R.id.lib);
                  final EditText price =  views.findViewById(R.id.price);
                  final ImageView img = views.findViewById(R.id.img);
-                 final ImageButton  upload = views.findViewById(R.id.upload);
                  final EditText  add = views.findViewById(R.id.add);
                  final Spinner type = views.findViewById(R.id.type);
+
+                 final Button back = views.findViewById(R.id.back);
+                 back.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         dialog.dismiss();
+                     }
+                 });
+
 
                  final List<String> typeShow = new ArrayList<>();
                  typeShow.add("select type show film");
@@ -147,6 +164,55 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                  time.setText(movies.getTime());
                  type.setSelection(Integer.valueOf(movies.getType()));
                  Glide.with(context).load(movies.getImg()).into(img);
+
+                 final Button save = views.findViewById(R.id.add);
+                 save.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+
+                         final movies m = new movies();
+                         m.setName(title.getText().toString());
+                         m.setDetails(details.getText().toString());
+                         m.setPrice(Integer.parseInt(price.getText().toString()));
+                         m.setDuration(duration.getText().toString());
+                         m.setScreen(libirty.getText().toString());
+                         m.setTime(time.getText().toString());
+                         m.setType(movies.getType());
+                         m.setSeatList(movies.getSeatList());
+                         m.setId(movies.getId());
+                         m.setImg(movies.getImg());
+
+
+                         Query fireQuery = ref.child("movie").orderByChild("id").equalTo(movies.getId());
+                         fireQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                             @Override
+                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                 // ازا الحساب غير موجوديظهر مسج
+                                 if (dataSnapshot.getValue() != null) {
+
+                                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                         snapshot.getRef().setValue(m);
+                                         Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+
+
+                                     }
+
+
+                                     dialog.dismiss();
+
+                                 }
+                             }
+
+                             @Override
+                             public void onCancelled(DatabaseError databaseError) {
+                                 dialog.dismiss();
+                                 Toast.makeText(context
+                                         , "no connected internet", Toast.LENGTH_SHORT).show();
+                             }
+
+                         });
+                     }
+                 });
 
              }
          });

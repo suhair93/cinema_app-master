@@ -12,9 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.cinema_app.Adapter.MovieAdapter;
 import com.cinema_app.Adapter.SoonAdapter;
+import com.cinema_app.Login;
 import com.cinema_app.R;
 import com.cinema_app.models.movies;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +49,15 @@ public class all_movies extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
 
-
+        Button logout = view.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),Login.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        });
 
           LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
          mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -31,12 +31,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     SharedPreferences prefs;
     private int[] tabIcons = {
             R.drawable.now,
-
-
-
-
-
-    };
+            R.drawable.payment};
     public  static TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         viewPager.setCurrentItem(0);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -85,6 +80,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new all_movies(),"Movies");
+        adapter.addFragment(new Manage_payment(),"Manage Payment");
 
         viewPager.setAdapter(adapter);
     }
@@ -93,13 +89,14 @@ public class MainActivityAdmin extends AppCompatActivity {
     private void setupTabIcons() {
 
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
 
 
 
 
         View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
         view1.findViewById(R.id.icon).setBackgroundResource(tabIcons[0]);
-        tabLayout.getTabAt(0).setCustomView(view1);
+       // tabLayout.getTabAt(0).setCustomView(view1);
 
 
 

@@ -61,7 +61,7 @@ public class Profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view =inflater.inflate(R.layout.fragment_profile, container, false);
+       final View view =inflater.inflate(R.layout.fragment_profile, container, false);
 
        name = view.findViewById(R.id.user);
         password = view.findViewById(R.id.password);
@@ -78,6 +78,15 @@ public class Profile extends Fragment {
         dialog.setCanceledOnTouchOutside(false);
 
 
+         Button logout = view.findViewById(R.id.logout);
+         logout.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent i = new Intent(getActivity(),Login.class);
+                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                 startActivity(i);
+             }
+         });
 
         layout1 = view.findViewById(R.id.layout);
         layout2 = view.findViewById(R.id.layout2);
@@ -203,7 +212,7 @@ public class Profile extends Fragment {
      @Override
      public void onClick(View v) {
 
-                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
                          LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
                          View views = inflater.inflate(R.layout.dialoge_barcode, null);
@@ -211,7 +220,13 @@ public class Profile extends Fragment {
                          final AlertDialog dialog1 = alertDialog.create();
                          dialog1.show();
                          ImageView imageView = (ImageView) views.findViewById(R.id.imageView);
-
+                         Button done = views.findViewById(R.id.done);
+                         done.setOnClickListener(new View.OnClickListener() {
+                             @Override
+                             public void onClick(View v) {
+                                 dialog1.dismiss();
+                             }
+                         });
 
                           ;// Whatever you need to encode in the QR code
                          MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
